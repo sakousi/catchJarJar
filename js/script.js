@@ -1,5 +1,5 @@
 let gameTime;
-let depopSpeed = 0;
+let depopSpeed = 3000;
 let popSpeed = 1000;
 let random;
 let strRan;
@@ -13,28 +13,21 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-function easy() {
-    popSpeed = 1000
-    depopSpeed = 1000
-    console.log(popSpeed)
-}
-
-function meduim() {
-
-}
-
-function hard() {
-
-}
-
 setInterval(() => {
     random = getRandomInt(casing);
+    popIn(random)
 
-    document.getElementById(random).innerHTML = '<img src="src/images/JarJar.png" id="jarjar' + random + '" onclick="punched(\'jarjar' + random + '\')" class="game__grid_img" alt="Click">';
 }, popSpeed);
 
 
 function punched(id) {
-    console.log(id)
+    console.log("L'element avec l'idetifient "+id.replace("jarjar", "")+" a été assomée")
     document.getElementById(id).outerHTML = ''
+}
+
+function popIn(random){
+    document.getElementById(random).innerHTML = '<img src="src/images/JarJar.png" id="jarjar' + random + '" onclick="punched(\'jarjar' + random + '\')" class="game__grid_img" alt="Click">';
+    setTimeout(() =>{
+        document.getElementById(random).innerHTML = ''
+    }, depopSpeed)
 }
